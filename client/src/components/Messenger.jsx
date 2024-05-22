@@ -4,11 +4,17 @@ import { AppBar, Box, Toolbar } from "@mui/material";
 import styled from "@emotion/styled";
 import { useContext } from "react";
 import { AccountContext } from "./Context/AccountProvider";
-import ChatDialog from "./ChatDialog";
+import ChatDialog from "./chat/ChatDialog";
 
-const Header = styled(AppBar)`
+const LoginHeader = styled(AppBar)`
   height: 220px;
   background-color: #00bfa5;
+  box-shadow: none;
+`;
+
+const Header = styled(AppBar)`
+  height: 125px;
+  background-color: #00a884;
   box-shadow: none;
 `;
 
@@ -19,15 +25,24 @@ const Component = styled(Box)`
 
 const Messenger = () => {
   const { account } = useContext(AccountContext);
+
   return (
     <Component>
       {account ? (
-        <ChatDialog />
-      ) : (
         <>
+          <ChatDialog />
+
           <Header>
             <Toolbar></Toolbar>
           </Header>
+
+          <ChatDialog />
+        </>
+      ) : (
+        <>
+          <LoginHeader>
+            <Toolbar></Toolbar>
+          </LoginHeader>
           <LoginDialog />;
         </>
       )}
